@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fale Conosco - Rafael Ferreira</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <a class="brand-social" href="https://www.linkedin.com/in/rafaelferreira1983/" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                    <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M6.94 8.5H3.56V19h3.38zM5.25 3A1.97 1.97 0 1 0 5.3 6.94 1.97 1.97 0 0 0 5.25 3m14.19 8.23c0-2.94-1.57-4.31-3.66-4.31a3.17 3.17 0 0 0-2.86 1.57V8.5H9.55c.04.78 0 10.5 0 10.5h3.37v-5.86c0-.31.02-.62.11-.84a1.84 1.84 0 0 1 1.72-1.23c1.22 0 1.71.92 1.71 2.27V19h3.38z"></path>
+                    </svg>
+                </a>
+                <div class="brand-copy">
+                    <h1 class="site-title">Fale Conosco</h1>
+                    <p class="site-subtitle">Canal de contato do portfólio de Rafael Ferreira</p>
+                </div>
+            </div>
+
+            <nav class="site-nav" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="certificacoes.html">Certificações</a></li>
+                    <li><a href="links.html">Links</a></li>
+                    <li><a class="active" href="fale_conosco.html">Fale Conosco</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container">
+            <section class="content-card" aria-labelledby="contato">
+                <h2 id="contato" class="section-title">Entre em contato</h2>
+
+                <form 
+                    class="form-layout"
+                    name="contato"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    action="/obrigado.html"
+                >
+
+                    <!-- Necessário para o Netlify -->
+                    <input type="hidden" name="form-name" value="contato">
+
+                    <!-- Anti-spam invisível -->
+                    <p class="visually-hidden">
+                        <label>Não preencha este campo: 
+                            <input name="bot-field">
+                        </label>
+                    </p>
+
+                    <!-- Assunto automático -->
+                    <input type="hidden" name="subject" value="Novo contato pelo site">
+
+                    <div class="form-group">
+                        <label for="nome">Nome</label>
+                        <input id="nome" type="text" name="nome" placeholder="Seu nome completo" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input id="email" type="email" name="email" placeholder="seu@email.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Área de interesse</label>
+                        <div class="choice-group">
+                            <label class="choice-option">
+                                <input type="radio" name="area" value="jornalismo" required>
+                                <span>Jornalismo</span>
+                            </label>
+                            <label class="choice-option">
+                                <input type="radio" name="area" value="tecnologia">
+                                <span>Tecnologia</span>
+                            </label>
+                            <label class="choice-option">
+                                <input type="radio" name="area" value="marketing">
+                                <span>Marketing</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="choice-option">
+                            <input type="checkbox" name="retorno">
+                            <span>Desejo receber retorno</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+                    </div>
+
+                    <button class="button" type="submit">Enviar mensagem</button>
+
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Rafael Ferreira | Disponível para conexões e oportunidades</p>
+        </div>
+    </footer>
+</body>
+</html>
