@@ -183,6 +183,14 @@ a:focus-visible {
     font-size: clamp(1.5rem, 2vw, 2rem);
 }
 
+.section-title small {
+    display: block;
+    margin-top: 0.35rem;
+    font-size: 0.88rem;
+    color: var(--text-soft);
+    font-weight: 400;
+}
+
 .hero-image,
 .gallery-image {
     overflow: hidden;
@@ -321,6 +329,47 @@ a:focus-visible {
 .link-list {
     display: grid;
     gap: 0.85rem;
+}
+
+.project-list li {
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.project-thumb {
+    width: 120px;
+    height: 76px;
+    border-radius: 14px;
+    object-fit: cover;
+    border: 1px solid rgba(209, 213, 219, 0.8);
+    background: #ffffff;
+}
+
+.personal-links-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.platform-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+}
+
+.link-icon {
+    width: 1rem;
+    height: 1rem;
+    flex-shrink: 0;
+    fill: currentColor;
+}
+
+@media (max-width: 720px) {
+    .personal-links-grid {
+        grid-template-columns: 1fr;
+    }
 }
 
 .link-list li {

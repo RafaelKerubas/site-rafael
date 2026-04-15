@@ -50,16 +50,21 @@
             <section class="content-card" aria-labelledby="links-pessoais">
                 <h2 id="links-pessoais" class="section-title">Links pessoais</h2>
                 <p>Esta página concentra perfis, publicações e trabalhos que ajudam a entender a trajetória de Rafael Ferreira entre comunicação, tecnologia e portfólio de desenvolvimento web.</p>
-                <ul class="link-list">
-                    <li><a href="https://www.linkedin.com/in/rafaelferreira1983/" target="_blank" rel="noopener noreferrer">LinkedIn</a> - Perfil profissional</li>
-                    <li><a href="https://www.instagram.com/kerubaspxl/" target="_blank" rel="noopener noreferrer">Instagram</a> - Projeto pessoal de pixel art</li>
-                    <li><a href="https://medium.com/@kerubas" target="_blank" rel="noopener noreferrer">Medium</a> - Artigos e textos reflexivos de autoria própria</li>
-                </ul>
+                <div class="personal-links-grid">
+                    <ul class="link-list">
+                        <li><a class="platform-link" href="https://www.linkedin.com/in/rafaelferreira1983/" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4.98 3.5C4.98 4.88 3.86 6 2.48 6 1.12 6 0 4.88 0 3.5S1.12 1 2.48 1C3.86 1 4.98 2.12 4.98 3.5zM0 8.5h4.96V24H0V8.5zM7.46 8.5h4.76v2.12h.07c.66-1.26 2.28-2.59 4.69-2.59 5.01 0 5.94 3.3 5.94 7.61V24h-4.96v-7.95c0-1.89-.03-4.32-2.63-4.32-2.63 0-3.03 2.05-3.03 4.17V24H7.46V8.5z"></path></svg><span>LinkedIn</span></a> - Perfil profissional</li>
+                        <li><a class="platform-link" href="https://medium.com/@kerubas" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M2 4.5V19.5C2 20.33 2.67 21 3.5 21H20.5C21.33 21 22 20.33 22 19.5V4.5C22 3.67 21.33 3 20.5 3H3.5C2.67 3 2 3.67 2 4.5ZM7.1 16.8L4.5 9.44V16.8H7.1ZM8.99 9.83L11.66 16.81H14.31L11.63 9.83H8.99ZM18.14 16.81L14.89 10.26L16.52 9.34L19 16.81H18.14Z"></path></svg><span>Medium</span></a> - Artigos e textos reflexivos de autoria própria</li>
+                    </ul>
+                    <ul class="link-list">
+                        <li><a class="platform-link" href="https://www.instagram.com/kerubaspxl/" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 7.09a4.91 4.91 0 1 0 0 9.82 4.91 4.91 0 0 0 0-9.82zm0 8.09a3.18 3.18 0 1 1 0-6.36 3.18 3.18 0 0 1 0 6.36z"></path><path d="M17.8 3H6.2C4.54 3 3.2 4.34 3.2 6v11.92C3.2 19.66 4.54 21 6.2 21h11.6c1.66 0 3-1.34 3-2.99V6C20.8 4.34 19.46 3 17.8 3zm1.09 12.91c0 .6-.49 1.09-1.09 1.09H6.2c-.6 0-1.09-.49-1.09-1.09V6c0-.6.49-1.09 1.09-1.09h11.6c.6 0 1.09.49 1.09 1.09v9.91z"></path><circle cx="18.5" cy="5.5" r="1.5"></circle></svg><span>Kerubaspxl</span></a> - Projeto pessoal de pixel art</li>
+                        <li><a class="platform-link" href="https://www.instagram.com/promptmancer1/" target="_blank" rel="noopener noreferrer"><svg class="link-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 7.09a4.91 4.91 0 1 0 0 9.82 4.91 4.91 0 0 0 0-9.82zm0 8.09a3.18 3.18 0 1 1 0-6.36 3.18 3.18 0 0 1 0 6.36z"></path><path d="M17.8 3H6.2C4.54 3 3.2 4.34 3.2 6v11.92C3.2 19.66 4.54 21 6.2 21h11.6c1.66 0 3-1.34 3-2.99V6C20.8 4.34 19.46 3 17.8 3zm1.09 12.91c0 .6-.49 1.09-1.09 1.09H6.2c-.6 0-1.09-.49-1.09-1.09V6c0-.6.49-1.09 1.09-1.09h11.6c.6 0 1.09.49 1.09 1.09v9.91z"></path><circle cx="18.5" cy="5.5" r="1.5"></circle></svg><span>Promptmancer</span></a> - Geração de animes por IA</li>
+                    </ul>
+                </div>
                 <p>Se quiser conhecer a formação técnica por trás desses trabalhos, veja também as <a href="certificacoes.html">certificações</a> e a apresentação completa na <a href="index.html">página inicial</a>.</p>
             </section>
 
             <section class="content-card" aria-labelledby="playlist-youtube">
-                <h2 id="playlist-youtube" class="section-title">Playlist YouTube</h2>
+                <h2 id="playlist-youtube" class="section-title">Playlist YouTube <small class="section-note">Exemplo de reportagens feitas ao longo da carreira como jornalista</small></h2>
                 <iframe
                     class="media-frame"
                     src="https://www.youtube.com/embed/videoseries?list=PLA165C0226610A85F"
@@ -71,14 +76,29 @@
             <section class="content-card" aria-labelledby="projetos-programacao">
                 <h2 id="projetos-programacao" class="section-title">Projetos de Programação</h2>
                 <p>Os projetos abaixo representam aplicações reais e estudos práticos alinhados ao objetivo de atuação como desenvolvedor web júnior, com foco em experiências úteis, funcionais e publicadas online.</p>
-                <ul class="link-list">
-                    <li><a href="https://golden-mochi-b592d8.netlify.app/" target="_blank" rel="noopener noreferrer">Newsflow Pro</a> - Sistema de redação para rádio e TV</li>
-                    <li><a href="https://novohorasplanetarias.netlify.app/" target="_blank" rel="noopener noreferrer">Sistema de Horas Planetárias</a> - Cálculo e exibição de horas planetárias</li>
-                    <li><a href="https://calcula-apoio.netlify.app/" target="_blank" rel="noopener noreferrer">Calculadora de Apoio Comercial</a> - Cálculo de preços e descontos</li>
-                    <li><a href="https://radiontriangulomineiro.netlify.app/" target="_blank" rel="noopener noreferrer">Rádio On</a> - Streaming ao vivo</li>
-                    <li><a href="https://ogawaryu-uberaba.netlify.app/" target="_blank" rel="noopener noreferrer">Ogawa Ryu</a> - Landing page institucional</li>
-                </ul>
                 <p>Para conversar sobre projetos, oportunidades ou parcerias, acesse a página de <a href="fale_conosco.html">contato</a>.</p>
+                <ul class="link-list project-list">
+                    <li>
+                        <img class="project-thumb" src="imagens/printprojetos/newsflow.png" alt="NewsFlow Pro">
+                        <div><a href="https://newsflowpro.netlify.app/" target="_blank" rel="noopener noreferrer">Newsflow Pro</a> - NewsFlow Pro é uma SPA de planejamento editorial para emissoras, criada com React 19, Tailwind CSS e integração opcional com Google GenAI. O produto organiza roteiros de jornal, tempos de mídia e controle de ordem editorial, oferecendo teleprompter em nova janela e preview de impressão. O diferencial técnico está no fluxo de produção completo em browser — com drag-and-drop, cronômetro “No Ar” e geração inteligente de slug jornalístico.</div>
+                    </li>
+                    <li>
+                        <img class="project-thumb" src="imagens/printprojetos/horasplanetarias.png" alt="Horas Planetárias">
+                        <div><a href="https://novohorasplanetarias.netlify.app/" target="_blank" rel="noopener noreferrer">Sistema de Horas Planetárias</a> - Ferramenta web que calcula horas planetárias com base na localização do usuário, integrando dados astronômicos reais para exibir planeta regente do dia, hora planetária atual, fase da Lua e horários solares. Desenvolvido com HTML, CSS, JavaScript vanilla, SunCalc e APIs externas de clima e geolocalização. O diferencial técnico está na combinação entre lógica temporal dinâmica, atualização em tempo real e personalização da experiência conforme contexto geográfico.</div>
+                    </li>
+                    <li>
+                        <img class="project-thumb" src="imagens/printprojetos/calculadora-apoio.png" alt="Calculadora de Apoio Comercial">
+                        <div><a href="https://calcula-apoio.netlify.app/" target="_blank" rel="noopener noreferrer">Calculadora de Apoio Comercial</a> - Calculadora Rádio On é uma ferramenta web simples para estimar investimentos em campanhas de rádio, calculando custo de spots e testemunhais por duração, frequência e desconto. Construída com HTML, CSS e JavaScript puro, oferece uma interface direta de formulário e cálculo instantâneo sem dependências externas.</div>
+                    </li>
+                    <li>
+                        <img class="project-thumb" src="imagens/printprojetos/radiotriangulomineiro.png" alt="Rádio On Triângulo Mineiro">
+                        <div><a href="https://radiontriangulomineiro.netlify.app/" target="_blank" rel="noopener noreferrer">Rádio On</a> - Rádio On Triângulo é uma landing page SPA construída com React 19 e Tailwind CSS para transmitir ao vivo a programação da rádio 104,9 FM. Resolve a experiência digital do ouvinte com player streaming em tempo real, controle de volume e conexões diretas para Instagram e WhatsApp. O diferencial técnico é o player HTML5 gerenciado por hooks React, integrado em uma UI leve implantada via Netlify.</div>
+                    </li>
+                    <li>
+                        <img class="project-thumb" src="imagens/printprojetos/ogawaryu.png" alt="Ogawa Ryu">
+                        <div><a href="https://ogawaryu-uberaba.netlify.app/" target="_blank" rel="noopener noreferrer">Ogawa Ryu</a> - Ogawa Ryu é uma landing page SPA desenvolvida com React, Vite, TypeScript e Tailwind CSS via CDN para promover uma escola de Kenjutsu. Resolve a necessidade de apresentação moderna e captação de alunos, com navegação ancorada, menu mobile e CTA direto para WhatsApp. Diferencial técnico: estrutura de componentes React, animações de scroll e FAQ interativo em uma página responsiva.</div>
+                    </li>
+                </ul>                
             </section>
         </div>
     </main>
