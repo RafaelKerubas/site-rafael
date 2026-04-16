@@ -142,7 +142,21 @@ function handleDrop(event) {
     const frame = document.getElementById('image-frame');
     frame.classList.remove('drag-over');
 
-    const file = event.dataTransfer.files[0];
+    let file = null;
+    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+        file = event.dataTransfer.files[0];
+    } else if (event.dataTransfer.items && event.dataTransfer.items.length > 0) {
+        const item = Array.from(event.dataTransfer.items).find(item => item.kind === 'file');
+        if (item) {
+            file = item.getAsFile();
+        }
+    }
+
+    if (!file) {
+        statusMessage.textContent = 'Arraste um arquivo de imagem válido para dentro da área.';
+        return;
+    }
+
     handleImageUpload(file);
 }
 
@@ -206,6 +220,7 @@ imageFrame.addEventListener('click', (event) => {
 imageFrame.addEventListener('dragover', handleDragOver);
 imageFrame.addEventListener('dragenter', handleDragOver);
 imageFrame.addEventListener('dragleave', handleDragLeave);
+imageFrame.addEventListener('dragend', handleDragLeave);
 imageFrame.addEventListener('drop', handleDrop);
 
 copyButtons.forEach((button) => {
@@ -218,11 +233,11 @@ copyButtons.forEach((button) => {
 
 clearButton.addEventListener('click', resetTool);
 
-document.addEventListener('dragover', (event) => {
+window.addEventListener('dragover', (event) => {
     event.preventDefault();
 });
 
-document.addEventListener('drop', (event) => {
+window.addEventListener('drop', (event) => {
     event.preventDefault();
 });
 
