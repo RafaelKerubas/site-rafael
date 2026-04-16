@@ -125,41 +125,6 @@ function handleImageUpload(file) {
     reader.readAsDataURL(file);
 }
 
-function handleDragOver(event) {
-    event.preventDefault();
-    event.dataTransfer.dropEffect = 'copy';
-    document.getElementById('image-frame').classList.add('drag-over');
-}
-
-function handleDragLeave(event) {
-    event.preventDefault();
-    document.getElementById('image-frame').classList.remove('drag-over');
-}
-
-function handleDrop(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    const frame = document.getElementById('image-frame');
-    frame.classList.remove('drag-over');
-
-    let file = null;
-    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
-        file = event.dataTransfer.files[0];
-    } else if (event.dataTransfer.items && event.dataTransfer.items.length > 0) {
-        const item = Array.from(event.dataTransfer.items).find(item => item.kind === 'file');
-        if (item) {
-            file = item.getAsFile();
-        }
-    }
-
-    if (!file) {
-        statusMessage.textContent = 'Arraste um arquivo de imagem válido para dentro da área.';
-        return;
-    }
-
-    handleImageUpload(file);
-}
-
 function resetTool() {
     previewImage.src = '';
     previewImage.hidden = true;
@@ -217,12 +182,6 @@ imageFrame.addEventListener('click', (event) => {
     clickTarget.classList.add('active');
 });
 
-imageFrame.addEventListener('dragover', handleDragOver);
-imageFrame.addEventListener('dragenter', handleDragOver);
-imageFrame.addEventListener('dragleave', handleDragLeave);
-imageFrame.addEventListener('dragend', handleDragLeave);
-imageFrame.addEventListener('drop', handleDrop);
-
 copyButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const targetId = button.dataset.copyTarget;
@@ -232,14 +191,6 @@ copyButtons.forEach((button) => {
 });
 
 clearButton.addEventListener('click', resetTool);
-
-window.addEventListener('dragover', (event) => {
-    event.preventDefault();
-});
-
-window.addEventListener('drop', (event) => {
-    event.preventDefault();
-});
 
 window.addEventListener('DOMContentLoaded', () => {
     resetTool();
