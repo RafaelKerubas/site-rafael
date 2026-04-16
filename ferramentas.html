@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XDYQVQBPL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5XDYQVQBPL', {
+            anonymize_ip: true
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ferramentas de Programação | Rafael Ferreira</title>
+    <meta name="description" content="Página de ferramentas do portfólio rafael.jor.br com cards de projetos de programação em HTML, CSS e JavaScript puro.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.75rem;
+        }
+
+        .tool-card {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(209, 213, 219, 0.95);
+            border-radius: var(--radius-lg);
+            padding: 1.75rem;
+            box-shadow: var(--shadow);
+            display: grid;
+            gap: 1rem;
+        }
+
+        .tool-card h3 {
+            margin: 0;
+            color: var(--heading-color);
+            font-size: clamp(1.15rem, 1.4vw, 1.35rem);
+        }
+
+        .tool-card p {
+            margin: 0;
+            color: var(--text-soft);
+            line-height: 1.75;
+        }
+
+        .tool-card .tool-meta {
+            display: grid;
+            gap: 0.75rem;
+        }
+
+        .tool-card .button {
+            justify-self: start;
+        }
+
+        @media (max-width: 860px) {
+            .tools-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <a class="brand-social" href="https://www.linkedin.com/in/rafaelferreira1983/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M6.94 8.5H3.56V19h3.38zM5.25 3A1.97 1.97 0 1 0 5.3 6.94 1.97 1.97 0 0 0 5.25 3m14.19 8.23c0-2.94-1.57-4.31-3.66-4.31a3.17 3.17 0 0 0-2.86 1.57V8.5H9.55c.04.78 0 10.5 0 10.5h3.37v-5.86c0-.31.02-.62.11-.84a1.84 1.84 0 0 1 1.72-1.23c1.22 0 1.71.92 1.71 2.27V19h3.38z"></path>
+                    </svg>
+                </a>
+                <div class="brand-copy">
+                    <h1 class="site-title">Ferramentas</h1>
+                    <p class="site-subtitle">Cards de ferramentas de programação e estudos práticos</p>
+                </div>
+            </div>
+
+            <nav class="site-nav" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="certificacoes.html">Certificações</a></li>
+                    <li><a href="links.html">Links</a></li>
+                    <li><a class="active" href="ferramentas.html">Ferramentas</a></li>
+                    <li><a href="fale_conosco.html">Fale Conosco</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container">
+            <section class="content-card" aria-labelledby="ferramentas-titulo">
+                <h2 id="ferramentas-titulo" class="section-title">Ferramentas para agilizar o trabalho</h2>
+                <p>Ferramentas desenvolvidas após estudos de programação, com foco em aplicações práticas de HTML, CSS e JavaScript puro. Navegue pelos cards abaixo para acessar cada recurso especializado.</p>
+                <div class="tools-grid">
+                    <article class="tool-card">
+                        <div class="tool-meta">
+                            <h3>Seletor de Código de Cor</h3>
+                            <p>Ferramenta dedicada para selecionar um pixel em imagem e obter os valores de cor em HEX, RGB e HSL. Construída com canvas e JavaScript puro.</p>
+                        </div>
+                        <a class="button" href="ferramentas/seletor-de-codigo-cor.html">Abrir Seletor</a>
+                    </article>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Rafael Ferreira | Ferramentas de desenvolvimento web e estudos práticos.</p>
+        </div>
+    </footer>
+</body>
+</html>

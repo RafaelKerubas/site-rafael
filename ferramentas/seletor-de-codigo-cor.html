@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XDYQVQBPL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-5XDYQVQBPL', {
+            anonymize_ip: true
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletor de Código de Cor | Rafael Ferreira</title>
+    <meta name="description" content="Selecionador de cores interativo com upload de imagem, clique para capturar pixels e conversão para HEX, RGB e HSL.">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .tool-grid {
+            display: grid;
+            grid-template-columns: minmax(260px, 1fr) 360px;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .tool-panel {
+            display: grid;
+            gap: 1.5rem;
+        }
+
+        .image-card,
+        .details-card {
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(209, 213, 219, 0.95);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .image-card {
+            min-height: 420px;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .image-frame {
+            position: relative;
+            min-height: 320px;
+            border-radius: 18px;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            background: #f8fafc;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .image-frame img {
+            display: none;
+            width: 100%;
+            height: auto;
+            max-height: 100%;
+            border-radius: 18px;
+            cursor: crosshair;
+            object-fit: contain;
+        }
+
+        .image-frame img[hidden] {
+            display: none !important;
+        }
+
+        .image-frame::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+        }
+
+        .image-placeholder {
+            color: var(--text-soft);
+            font-size: 0.98rem;
+            line-height: 1.6;
+            max-width: 18rem;
+        }
+
+        .click-target {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            border: 3px solid rgba(15, 118, 110, 0.95);
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.92);
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
+        }
+
+        .click-target.active {
+            opacity: 1;
+        }
+
+        .preview-box {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .color-sample {
+            width: 100%;
+            min-height: 140px;
+            border-radius: 18px;
+            border: 1px solid rgba(15, 118, 110, 0.16);
+            background: linear-gradient(135deg, rgba(236, 254, 255, 0.9), rgba(245, 254, 255, 0.96));
+            display: grid;
+            place-items: center;
+            color: var(--text-soft);
+        }
+
+        .color-sample span {
+            width: 80px;
+            height: 80px;
+            border-radius: 18px;
+            border: 1px solid rgba(209, 213, 219, 0.9);
+            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+        }
+
+        .color-values {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .color-row {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) auto;
+            gap: 0.75rem;
+            align-items: center;
+            padding: 1rem;
+            border: 1px solid var(--surface-muted);
+            border-radius: 16px;
+            background: #f8fafc;
+        }
+
+        .color-label {
+            margin: 0;
+            font-weight: 600;
+            color: var(--heading-color);
+        }
+
+        .color-value {
+            min-width: 0;
+            font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+            background: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 0.85rem 1rem;
+            color: var(--text-soft);
+            overflow-wrap: anywhere;
+        }
+
+        .row-actions {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .button-copy {
+            min-width: 110px;
+        }
+
+        .button-clear {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .info-note {
+            margin: 0;
+            color: var(--text-soft);
+            line-height: 1.7;
+        }
+
+        .status-message {
+            color: var(--accent-strong);
+            font-weight: 600;
+        }
+
+        .file-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .file-label {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.45rem;
+        }
+
+        .file-label svg {
+            width: 1em;
+            height: 1em;
+            fill: currentColor;
+        }
+
+        @media (max-width: 860px) {
+            .tool-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .details-card {
+                order: 2;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .image-card,
+            .details-card {
+                padding: 1.25rem;
+            }
+
+            .file-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="site-header">
+        <div class="container header-inner">
+            <div class="brand">
+                <a class="brand-social" href="https://www.linkedin.com/in/rafaelferreira1983/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <svg class="brand-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M6.94 8.5H3.56V19h3.38zM5.25 3A1.97 1.97 0 1 0 5.3 6.94 1.97 1.97 0 0 0 5.25 3m14.19 8.23c0-2.94-1.57-4.31-3.66-4.31a3.17 3.17 0 0 0-2.86 1.57V8.5H9.55c.04.78 0 10.5 0 10.5h3.37v-5.86c0-.31.02-.62.11-.84a1.84 1.84 0 0 1 1.72-1.23c1.22 0 1.71.92 1.71 2.27V19h3.38z"></path>
+                    </svg>
+                </a>
+                <div class="brand-copy">
+                    <h1 class="site-title">Ferramentas</h1>
+                    <p class="site-subtitle">Ferramentas de programação e protótipos web</p>
+                </div>
+            </div>
+
+            <nav class="site-nav" aria-label="Navegação principal">
+                <ul>
+                    <li><a href="../index.html">Início</a></li>
+                    <li><a href="../certificacoes.html">Certificações</a></li>
+                    <li><a href="../links.html">Links</a></li>
+                    <li><a href="../ferramentas.html">Ferramentas</a></li>
+                    <li><a href="../fale_conosco.html">Fale Conosco</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="page-main">
+        <div class="container">
+            <section class="content-card" aria-labelledby="seletor-de-cor">
+                <h2 id="seletor-de-cor" class="section-title">Seletor de Código de Cor</h2>
+                <p>Envie uma imagem, clique no ponto desejado e obtenha automaticamente o valor da cor em HEX, RGB e HSL. Ideal para capturar paletas diretamente de imagens e projetos visuais.</p>
+                <div class="tool-grid">
+                    <div class="image-card">
+                        <div class="file-actions">
+                            <label class="button file-label" for="image-picker">
+                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20h14V8H5v12zm0-14h4V4h6v2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"></path></svg>
+                                Enviar imagem
+                            </label>
+                            <input id="image-picker" type="file" accept="image/*" hidden>
+                            <span id="status-message" class="status-message">Nenhuma imagem carregada.</span>
+                        </div>
+                        <div class="image-frame" id="image-frame">
+                            <div class="image-placeholder" id="image-placeholder">
+                                Arraste ou selecione uma imagem para ver o seletor de cor.<br>
+                                Clique em qualquer ponto da imagem para capturar o pixel.
+                            </div>
+                            <img id="preview-image" alt="Pré-visualização de imagem para seleção de cor" hidden>
+                            <div id="click-target" class="click-target" role="presentation"></div>
+                        </div>
+                        <p class="info-note">Use o cursor em cruz sobre a imagem. A leitura é feita via canvas para capturar exatamente o pixel clicado.</p>
+                    </div>
+
+                    <aside class="details-card">
+                        <div class="preview-box">
+                            <p class="color-label">Cor selecionada</p>
+                            <div class="color-sample" id="color-sample"><span></span></div>
+                        </div>
+                        <div class="color-values">
+                            <div class="color-row">
+                                <div>
+                                    <p class="color-label">HEX</p>
+                                    <div class="color-value" id="hex-value">#000000</div>
+                                </div>
+                                <button class="button button-copy" type="button" data-copy-target="hex-value">Copiar</button>
+                            </div>
+                            <div class="color-row">
+                                <div>
+                                    <p class="color-label">RGB</p>
+                                    <div class="color-value" id="rgb-value">rgb(0, 0, 0)</div>
+                                </div>
+                                <button class="button button-copy" type="button" data-copy-target="rgb-value">Copiar</button>
+                            </div>
+                            <div class="color-row">
+                                <div>
+                                    <p class="color-label">HSL</p>
+                                    <div class="color-value" id="hsl-value">hsl(0, 0%, 0%)</div>
+                                </div>
+                                <button class="button button-copy" type="button" data-copy-target="hsl-value">Copiar</button>
+                            </div>
+                        </div>
+                        <button class="button button-clear" id="clear-button" type="button">Limpar imagem</button>
+                        <p class="info-note">Se nenhum valor for exibido, envie uma imagem e clique em um ponto válido. A ferramenta atualiza automaticamente os códigos de cor e o preview.</p>
+                    </aside>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>Rafael Ferreira | Ferramenta de seleção de cor integrada ao portfólio</p>
+        </div>
+    </footer>
+
+    <canvas id="color-canvas" hidden></canvas>
+    <script>
+        const fileInput = document.getElementById('image-picker');
+        const previewImage = document.getElementById('preview-image');
+        const imagePlaceholder = document.getElementById('image-placeholder');
+        const statusMessage = document.getElementById('status-message');
+        const clickTarget = document.getElementById('click-target');
+        const colorSample = document.getElementById('color-sample');
+        const hexValue = document.getElementById('hex-value');
+        const rgbValue = document.getElementById('rgb-value');
+        const hslValue = document.getElementById('hsl-value');
+        const canvas = document.getElementById('color-canvas');
+        const ctx = canvas.getContext('2d');
+        const clearButton = document.getElementById('clear-button');
+        const copyButtons = document.querySelectorAll('.button-copy');
+
+        let currentColor = { r: 0, g: 0, b: 0 };
+
+        function rgbToHex(r, g, b) {
+            const toHex = value => value.toString(16).padStart(2, '0');
+            return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+        }
+
+        function rgbToHsl(r, g, b) {
+            r /= 255;
+            g /= 255;
+            b /= 255;
+            const max = Math.max(r, g, b);
+            const min = Math.min(r, g, b);
+            const delta = max - min;
+            let h = 0;
+            let s = 0;
+            const l = (max + min) / 2;
+
+            if (delta !== 0) {
+                s = delta / (1 - Math.abs(2 * l - 1));
+                switch (max) {
+                    case r:
+                        h = ((g - b) / delta + (g < b ? 6 : 0));
+                        break;
+                    case g:
+                        h = (b - r) / delta + 2;
+                        break;
+                    case b:
+                        h = (r - g) / delta + 4;
+                        break;
+                }
+                h = Math.round(h * 60);
+            }
+
+            return `hsl(${h}, ${Math.round(s * 100)}%, ${Math.round(l * 100)}%)`;
+        }
+
+        function updateColorDisplay(r, g, b) {
+            const hex = rgbToHex(r, g, b);
+            const rgb = `rgb(${r}, ${g}, ${b})`;
+            const hsl = rgbToHsl(r, g, b);
+
+            hexValue.textContent = hex;
+            rgbValue.textContent = rgb;
+            hslValue.textContent = hsl;
+            colorSample.querySelector('span').style.background = hex;
+            colorSample.querySelector('span').style.boxShadow = `0 0 0 1px rgba(15, 23, 42, 0.08), inset 0 0 0 2px rgba(255,255,255,0.6)`;
+            statusMessage.textContent = 'Clique na imagem para capturar a cor.';
+            currentColor = { r, g, b };
+        }
+
+        function setFeedback(button, message = 'Copiado!') {
+            const originalText = button.textContent;
+            button.textContent = message;
+            button.disabled = true;
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.disabled = false;
+            }, 1400);
+        }
+
+        function fallbackCopyText(text) {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            textarea.style.position = 'fixed';
+            textarea.style.opacity = '0';
+            document.body.appendChild(textarea);
+            textarea.select();
+            textarea.setSelectionRange(0, textarea.value.length);
+            try {
+                document.execCommand('copy');
+            } catch (error) {
+                console.warn('Fallback copy failed', error);
+            }
+            document.body.removeChild(textarea);
+        }
+
+        function copyText(value, button) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(value).then(() => setFeedback(button)).catch(() => {
+                    fallbackCopyText(value);
+                    setFeedback(button);
+                });
+            } else {
+                fallbackCopyText(value);
+                setFeedback(button);
+            }
+        }
+
+        function drawImageOnCanvas(image) {
+            canvas.width = image.naturalWidth;
+            canvas.height = image.naturalHeight;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+        }
+
+        function handleImageUpload(file) {
+            if (!file || !file.type.startsWith('image/')) {
+                statusMessage.textContent = 'Selecione um arquivo de imagem válido.';
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = () => {
+                previewImage.src = reader.result;
+                previewImage.hidden = false;
+                previewImage.style.display = 'block';
+                imagePlaceholder.hidden = true;
+                statusMessage.textContent = 'Imagem carregada. Clique sobre ela para capturar uma cor.';
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function resetTool() {
+            previewImage.src = '';
+            previewImage.hidden = true;
+            previewImage.style.display = 'none';
+            previewImage.src = '';
+            previewImage.hidden = true;
+            imagePlaceholder.hidden = false;
+            clickTarget.classList.remove('active');
+            clickTarget.style.left = '0';
+            clickTarget.style.top = '0';
+            hexValue.textContent = '#000000';
+            rgbValue.textContent = 'rgb(0, 0, 0)';
+            hslValue.textContent = 'hsl(0, 0%, 0%)';
+            colorSample.querySelector('span').style.background = '#000000';
+            statusMessage.textContent = 'Nenhuma imagem carregada.';
+            canvas.width = 0;
+            canvas.height = 0;
+        }
+
+        fileInput.addEventListener('change', (event) => {
+            const [file] = event.target.files;
+            handleImageUpload(file);
+        });
+
+        previewImage.addEventListener('load', () => {
+            if (previewImage.naturalWidth && previewImage.naturalHeight) {
+                drawImageOnCanvas(previewImage);
+            }
+        });
+
+        document.getElementById('image-frame').addEventListener('click', (event) => {
+            if (previewImage.hidden) {
+                statusMessage.textContent = 'Envie uma imagem antes de clicar na área de seleção.';
+                return;
+            }
+
+            const rect = previewImage.getBoundingClientRect();
+            const x = Math.floor((event.clientX - rect.left) * (previewImage.naturalWidth / rect.width));
+            const y = Math.floor((event.clientY - rect.top) * (previewImage.naturalHeight / rect.height));
+
+            if (x < 0 || y < 0 || x >= canvas.width || y >= canvas.height) {
+                statusMessage.textContent = 'Clique dentro da imagem para capturar a cor.';
+                return;
+            }
+
+            const pixel = ctx.getImageData(x, y, 1, 1).data;
+            if (pixel[3] === 0) {
+                statusMessage.textContent = 'O ponto clicado é transparente. Escolha outra área.';
+                return;
+            }
+
+            updateColorDisplay(pixel[0], pixel[1], pixel[2]);
+            clickTarget.style.left = `${event.clientX - rect.left}px`;
+            clickTarget.style.top = `${event.clientY - rect.top}px`;
+            clickTarget.classList.add('active');
+        });
+
+        copyButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const targetId = button.dataset.copyTarget;
+                const value = document.getElementById(targetId).textContent;
+                copyText(value, button);
+            });
+        });
+
+        clearButton.addEventListener('click', resetTool);
+
+        window.addEventListener('DOMContentLoaded', () => {
+            resetTool();
+        });
+    </script>
+</body>
+</html>
