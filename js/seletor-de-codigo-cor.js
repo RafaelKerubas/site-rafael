@@ -125,6 +125,27 @@ function handleImageUpload(file) {
     reader.readAsDataURL(file);
 }
 
+function handleDragOver(event) {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'copy';
+    document.getElementById('image-frame').classList.add('drag-over');
+}
+
+function handleDragLeave(event) {
+    event.preventDefault();
+    document.getElementById('image-frame').classList.remove('drag-over');
+}
+
+function handleDrop(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    const frame = document.getElementById('image-frame');
+    frame.classList.remove('drag-over');
+
+    const file = event.dataTransfer.files[0];
+    handleImageUpload(file);
+}
+
 function resetTool() {
     previewImage.src = '';
     previewImage.hidden = true;
@@ -153,7 +174,9 @@ previewImage.addEventListener('load', () => {
     }
 });
 
-document.getElementById('image-frame').addEventListener('click', (event) => {
+const imageFrame = document.getElementById('image-frame');
+
+imageFrame.addEventListener('click', (event) => {
     if (previewImage.hidden) {
         statusMessage.textContent = 'Envie uma imagem antes de clicar na área de seleção.';
         return;
@@ -180,6 +203,11 @@ document.getElementById('image-frame').addEventListener('click', (event) => {
     clickTarget.classList.add('active');
 });
 
+imageFrame.addEventListener('dragover', handleDragOver);
+imageFrame.addEventListener('dragenter', handleDragOver);
+imageFrame.addEventListener('dragleave', handleDragLeave);
+imageFrame.addEventListener('drop', handleDrop);
+
 copyButtons.forEach((button) => {
     button.addEventListener('click', () => {
         const targetId = button.dataset.copyTarget;
@@ -189,6 +217,14 @@ copyButtons.forEach((button) => {
 });
 
 clearButton.addEventListener('click', resetTool);
+
+document.addEventListener('dragover', (event) => {
+    event.preventDefault();
+});
+
+document.addEventListener('drop', (event) => {
+    event.preventDefault();
+});
 
 window.addEventListener('DOMContentLoaded', () => {
     resetTool();
