@@ -126,6 +126,7 @@ function handleImageUpload(file) {
 }
 
 function resetTool() {
+    fileInput.value = '';
     previewImage.src = '';
     previewImage.hidden = true;
     previewImage.style.display = 'none';
@@ -162,6 +163,7 @@ imageFrame.addEventListener('click', (event) => {
     }
 
     const rect = previewImage.getBoundingClientRect();
+    const frameRect = imageFrame.getBoundingClientRect();
     const x = Math.floor((event.clientX - rect.left) * (previewImage.naturalWidth / rect.width));
     const y = Math.floor((event.clientY - rect.top) * (previewImage.naturalHeight / rect.height));
 
@@ -177,8 +179,8 @@ imageFrame.addEventListener('click', (event) => {
     }
 
     updateColorDisplay(pixel[0], pixel[1], pixel[2]);
-    clickTarget.style.left = `${event.clientX - rect.left}px`;
-    clickTarget.style.top = `${event.clientY - rect.top}px`;
+    clickTarget.style.left = `${event.clientX - frameRect.left}px`;
+    clickTarget.style.top = `${event.clientY - frameRect.top}px`;
     clickTarget.classList.add('active');
 });
 

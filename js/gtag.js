@@ -1,4 +1,7 @@
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
-gtag('config', 'G-5XDYQVQBPL');
+
+gtag('config', 'G-5XDYQVQBPL', {
+    anonymize_ip: true
+});

@@ -333,7 +333,7 @@ a:focus-visible {
 
 .project-list li {
     display: grid;
-    grid-template-columns: 88px 1fr;
+    grid-template-columns: 120px 1fr;
     gap: 1rem;
     align-items: flex-start;
 }
