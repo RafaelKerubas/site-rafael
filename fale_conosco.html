@@ -21,18 +21,18 @@
                     </svg>
                 </a>
                 <div class="brand-copy">
-                    <h1 class="site-title">Fale Conosco</h1>
-                    <p class="site-subtitle">Canal de contato do portfólio de Rafael Ferreira</p>
+                    <h1 class="site-title">fale_conosco<span class="cursor-blink"></span></h1>
+                    <p class="site-subtitle">session: zsh • send message • dev-jr</p>
                 </div>
             </div>
 
             <nav class="site-nav" aria-label="Navegação principal">
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="certificacoes.html">Certificações</a></li>
-                    <li><a href="links.html">Links</a></li>
-                    <li><a href="ferramentas.html">Ferramentas</a></li>
-                    <li><a class="active" href="fale_conosco.html">Fale Conosco</a></li>
+                    <li><a href="index.html">inicio</a></li>
+                    <li><a href="certificacoes.html">certificacoes</a></li>
+                    <li><a href="links.html">links</a></li>
+                    <li><a href="ferramentas.html">ferramentas</a></li>
+                    <li><a class="active" href="fale_conosco.html">contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -40,90 +40,106 @@
 
     <main class="page-main">
         <div class="container">
-            <section class="content-card" aria-labelledby="contato">
-                <h2 id="contato" class="section-title">Entre em contato</h2>
-                <p>Este canal está aberto para oportunidades em comunicação, tecnologia e projetos de portfólio de desenvolvimento web, além de conversas profissionais sobre conteúdo, produto digital e presença online.</p>
-                <div class="contact-direct" aria-label="Canais diretos de contato">
-                    <p class="contact-direct-text">Você também pode falar diretamente por WhatsApp ou por e-mail.</p>
-                    <div class="contact-direct-actions">
-                        <a class="button contact-whatsapp" href="https://wa.me/553497279453" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
-                        <a class="contact-email" href="mailto:falecom@rafael.jor.br">falecom@rafael.jor.br</a>
+            <section class="terminal-window" aria-labelledby="contato">
+                <div class="terminal-titlebar">
+                    <div class="window-controls">
+                        <span class="window-dot dot-close"></span>
+                        <span class="window-dot dot-minimize"></span>
+                        <span class="window-dot dot-maximize"></span>
                     </div>
+                    <span class="window-title">~/mail/compose_message.sh</span>
+                    <span class="window-info">ssl:enabled</span>
                 </div>
 
-                <form 
-                    class="form-layout"
-                    name="contato"
-                    method="POST"
-                    data-netlify="true"
-                    netlify-honeypot="bot-field"
-                    action="/obrigado.html"
-                >
-
-                    <!-- Necessário para o Netlify -->
-                    <input type="hidden" name="form-name" value="contato">
-
-                    <!-- Anti-spam invisível -->
-                    <p class="visually-hidden">
-                        <label>Não preencha este campo: 
-                            <input name="bot-field">
-                        </label>
-                    </p>
-
-                    <!-- Assunto automático -->
-                    <input type="hidden" name="subject" value="Novo contato pelo site">
-
-                    <div class="form-group">
-                        <label for="nome">Nome</label>
-                        <input id="nome" type="text" name="nome" placeholder="Seu nome completo" required>
+                <div class="content-card-body">
+                    <div class="cli-prompt">
+                        <span class="cli-user">rafael@portfolio</span>:<span class="cli-path">~/mail</span>$ <span class="cli-cmd">sendmail --to=falecom@rafael.jor.br</span>
                     </div>
-
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" name="email" placeholder="seu@email.com" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Área de interesse</label>
-                        <div class="choice-group">
-                            <label class="choice-option">
-                                <input type="radio" name="area" value="jornalismo" required>
-                                <span>Jornalismo</span>
-                            </label>
-                            <label class="choice-option">
-                                <input type="radio" name="area" value="tecnologia">
-                                <span>Tecnologia</span>
-                            </label>
-                            <label class="choice-option">
-                                <input type="radio" name="area" value="marketing">
-                                <span>Marketing</span>
-                            </label>
+                    <h2 id="contato" class="section-title">Entre em contato</h2>
+                    <p>Este canal está aberto para oportunidades em comunicação, tecnologia e projetos de portfólio de desenvolvimento web, além de conversas profissionais sobre conteúdo, produto digital e presença online.</p>
+                    
+                    <div class="contact-direct" aria-label="Canais diretos de contato">
+                        <p class="contact-direct-text">Você também pode falar diretamente por WhatsApp ou por e-mail.</p>
+                        <div class="contact-direct-actions">
+                            <a class="button contact-whatsapp" href="https://wa.me/553497279453" target="_blank" rel="noopener noreferrer">Falar no WhatsApp</a>
+                            <a class="contact-email" href="mailto:falecom@rafael.jor.br">falecom@rafael.jor.br</a>
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <label class="choice-option">
-                            <input type="checkbox" name="retorno">
-                            <span>Desejo receber retorno</span>
-                        </label>
-                    </div>
+                    <form 
+                        class="form-layout"
+                        name="contato"
+                        method="POST"
+                        data-netlify="true"
+                        netlify-honeypot="bot-field"
+                        action="/obrigado.html"
+                    >
 
-                    <div class="form-group">
-                        <label for="mensagem">Mensagem</label>
-                        <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
-                    </div>
+                        <!-- Necessário para o Netlify -->
+                        <input type="hidden" name="form-name" value="contato">
 
-                    <button class="button" type="submit">Enviar mensagem</button>
+                        <!-- Anti-spam invisível -->
+                        <p class="visually-hidden">
+                            <label>Não preencha este campo: 
+                                <input name="bot-field">
+                            </label>
+                        </p>
 
-                </form>
-                <p>Antes de entrar em contato, você também pode conhecer melhor a trajetória profissional na <a href="index.html">página inicial</a> e conferir os <a href="links.html">projetos publicados</a>.</p>
+                        <!-- Assunto automático -->
+                        <input type="hidden" name="subject" value="Novo contato pelo site">
+
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input id="nome" type="text" name="nome" placeholder="Seu nome completo" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input id="email" type="email" name="email" placeholder="seu@email.com" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Área de interesse</label>
+                            <div class="choice-group">
+                                <label class="choice-option">
+                                    <input type="radio" name="area" value="jornalismo" required>
+                                    <span>Jornalismo</span>
+                                </label>
+                                <label class="choice-option">
+                                    <input type="radio" name="area" value="tecnologia">
+                                    <span>Tecnologia</span>
+                                </label>
+                                <label class="choice-option">
+                                    <input type="radio" name="area" value="marketing">
+                                    <span>Marketing</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="choice-option">
+                                <input type="checkbox" name="retorno">
+                                <span>Desejo receber retorno</span>
+                            </label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem..." required></textarea>
+                        </div>
+
+                        <button class="button" type="submit">Enviar mensagem</button>
+
+                    </form>
+                    <p style="margin-top: 1.5rem;">Antes de entrar em contato, você também pode conhecer melhor a trajetória profissional na <a href="index.html">página inicial</a> e conferir os <a href="links.html">projetos publicados</a>.</p>
+                </div>
             </section>
         </div>
     </main>
 
     <footer class="site-footer">
         <div class="container">
-            <p>Rafael Ferreira | Disponível para conexões e oportunidades</p>
+            <p><span class="footer-prompt">rafael@portfolio:~$</span> echo "Rafael Ferreira | Disponível para conexões e oportunidades"</p>
         </div>
     </footer>
 </body>

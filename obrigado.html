@@ -20,18 +20,18 @@
                     </svg>
                 </a>
                 <div class="brand-copy">
-                    <h1 class="site-title">Mensagem enviada com sucesso</h1>
-                    <p class="site-subtitle">Confirmação de envio do formulário de contato</p>
+                    <h1 class="site-title">status: 200_ok<span class="cursor-blink"></span></h1>
+                    <p class="site-subtitle">session: zsh • message delivered • dev-jr</p>
                 </div>
             </div>
 
             <nav class="site-nav" aria-label="Navegação principal">
                 <ul>
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="certificacoes.html">Certificações</a></li>
-                    <li><a href="links.html">Links</a></li>
-                    <li><a href="ferramentas.html">Ferramentas</a></li>
-                    <li><a href="fale_conosco.html">Fale Conosco</a></li>
+                    <li><a href="index.html">inicio</a></li>
+                    <li><a href="certificacoes.html">certificacoes</a></li>
+                    <li><a href="links.html">links</a></li>
+                    <li><a href="ferramentas.html">ferramentas</a></li>
+                    <li><a href="fale_conosco.html">contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -39,14 +39,29 @@
 
     <main class="page-main">
         <div class="container centered-panel">
-            <section class="content-card message-card" aria-labelledby="mensagem-enviada">
-                <h2 id="mensagem-enviada" class="section-title">Mensagem enviada com sucesso</h2>
-                <p>Sua mensagem foi recebida e entrou na fila de atendimento do portfólio.</p>
-                <p>Retornarei o mais breve possível.</p>
-                <p>Enquanto isso, você pode voltar para a <a href="index.html">página inicial</a>, conferir as <a href="certificacoes.html">certificações</a> ou explorar os <a href="links.html">projetos e links</a>.</p>
+            <section class="terminal-window message-card" aria-labelledby="mensagem-enviada">
+                <div class="terminal-titlebar">
+                    <div class="window-controls">
+                        <span class="window-dot dot-close"></span>
+                        <span class="window-dot dot-minimize"></span>
+                        <span class="window-dot dot-maximize"></span>
+                    </div>
+                    <span class="window-title">~/mail/delivery_status.json</span>
+                    <span class="window-info">code:200</span>
+                </div>
 
-                <div class="message-actions">
-                    <a class="button" href="index.html">Voltar para a página inicial</a>
+                <div class="content-card-body">
+                    <div class="cli-prompt">
+                        <span class="cli-user">system</span>:<span class="cli-path">~/mail</span>$ <span class="cli-cmd">cat delivery_status.json</span>
+                    </div>
+                    <h2 id="mensagem-enviada" class="section-title">Mensagem enviada com sucesso</h2>
+                    <p style="color: var(--accent-green); font-family: var(--font-mono);">[✔] Sua mensagem foi recebida e entrou na fila de atendimento do portfólio.</p>
+                    <p>Retornarei o mais breve possível.</p>
+                    <p>Enquanto isso, você pode voltar para a <a href="index.html">página inicial</a>, conferir as <a href="certificacoes.html">certificações</a> ou explorar os <a href="links.html">projetos e links</a>.</p>
+
+                    <div class="message-actions">
+                        <a class="button" href="index.html">cd ~/inicio</a>
+                    </div>
                 </div>
             </section>
         </div>
@@ -54,7 +69,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>Rafael Ferreira | Obrigado pelo contato</p>
+            <p><span class="footer-prompt">rafael@portfolio:~$</span> echo "Rafael Ferreira | Obrigado pelo contato"</p>
         </div>
     </footer>
 </body>

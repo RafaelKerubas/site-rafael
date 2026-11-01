@@ -10,178 +10,9 @@
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-5XDYQVQBPL"></script>
     <script src="../js/gtag.js"></script>
     <style>
-        .tool-grid {
-            display: grid;
-            grid-template-columns: minmax(260px, 1fr) 360px;
-            gap: 2rem;
-            align-items: start;
-        }
-
-        .tool-panel {
-            display: grid;
-            gap: 1.5rem;
-        }
-
-        .image-card,
-        .details-card {
-            background: rgba(255, 255, 255, 0.96);
-            border: 1px solid rgba(209, 213, 219, 0.95);
-            border-radius: var(--radius-lg);
-            padding: 1.5rem;
-            box-shadow: var(--shadow);
-        }
-
-        .image-card {
-            min-height: 420px;
-            display: grid;
-            gap: 1rem;
-        }
-
-        .image-frame {
-            position: relative;
-            min-height: 320px;
-            border-radius: 18px;
-            border: 1px solid rgba(209, 213, 219, 0.9);
-            background: #f8fafc;
-            overflow: hidden;
-            display: grid;
-            place-items: center;
-            text-align: center;
-            padding: 1rem;
-        }
-
-        .image-frame img {
-            display: none;
-            width: 100%;
-            height: auto;
-            max-height: 100%;
-            border-radius: 18px;
-            cursor: crosshair;
-            object-fit: contain;
-        }
-
-        .image-frame img[hidden] {
-            display: none !important;
-        }
-
-        .image-frame::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            pointer-events: none;
-        }
-
-        .image-placeholder {
-            color: var(--text-soft);
-            font-size: 0.98rem;
-            line-height: 1.6;
-            max-width: 18rem;
-        }
-
-        .click-target {
-            position: absolute;
-            width: 28px;
-            height: 28px;
-            border: 3px solid rgba(15, 118, 110, 0.95);
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.92);
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s ease, transform 0.2s ease;
-            box-shadow: 0 10px 20px rgba(15, 23, 42, 0.18);
-        }
-
-        .click-target.active {
-            opacity: 1;
-        }
-
-        .preview-box {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .color-sample {
-            width: 100%;
-            min-height: 140px;
-            border-radius: 18px;
-            border: 1px solid rgba(15, 118, 110, 0.16);
-            background: linear-gradient(135deg, rgba(236, 254, 255, 0.9), rgba(245, 254, 255, 0.96));
-            display: grid;
-            place-items: center;
-            color: var(--text-soft);
-        }
-
-        .color-sample span {
-            width: 80px;
-            height: 80px;
-            border-radius: 18px;
-            border: 1px solid rgba(209, 213, 219, 0.9);
-            box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
-        }
-
-        .color-values {
-            display: grid;
-            gap: 1rem;
-        }
-
-        .color-row {
-            display: grid;
-            grid-template-columns: minmax(0, 1fr) auto;
-            gap: 0.75rem;
-            align-items: center;
-            padding: 1rem;
-            border: 1px solid var(--surface-muted);
-            border-radius: 16px;
-            background: #f8fafc;
-        }
-
-        .color-label {
-            margin: 0;
-            font-weight: 600;
-            color: var(--heading-color);
-        }
-
-        .color-value {
-            min-width: 0;
-            font-family: ui-monospace, SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
-            background: #ffffff;
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 0.85rem 1rem;
-            color: var(--text-soft);
-            overflow-wrap: anywhere;
-        }
-
-        .row-actions {
-            display: flex;
-            gap: 0.75rem;
-            flex-wrap: wrap;
-            justify-content: flex-end;
-        }
-
-        .button-copy {
-            min-width: 110px;
-        }
-
-        .button-clear {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .info-note {
-            margin: 0;
-            color: var(--text-soft);
-            line-height: 1.7;
-        }
-
-        .status-message {
-            color: var(--accent-strong);
-            font-weight: 600;
-        }
-
         .file-actions {
             display: flex;
+            align-items: center;
             gap: 1rem;
             flex-wrap: wrap;
         }
@@ -199,25 +30,10 @@
             fill: currentColor;
         }
 
-        @media (max-width: 860px) {
-            .tool-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .details-card {
-                order: 2;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .image-card,
-            .details-card {
-                padding: 1.25rem;
-            }
-
-            .file-actions {
-                flex-direction: column;
-            }
+        .row-actions {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
         }
     </style>
 </head>
@@ -231,18 +47,18 @@
                     </svg>
                 </a>
                 <div class="brand-copy">
-                    <h1 class="site-title">Ferramentas</h1>
-                    <p class="site-subtitle">Ferramentas de programação e protótipos web</p>
+                    <h1 class="site-title">color_picker<span class="cursor-blink"></span></h1>
+                    <p class="site-subtitle">session: zsh • canvas pixel reader • dev-jr</p>
                 </div>
             </div>
 
             <nav class="site-nav" aria-label="Navegação principal">
                 <ul>
-                    <li><a href="../index.html">Início</a></li>
-                    <li><a href="../certificacoes.html">Certificações</a></li>
-                    <li><a href="../links.html">Links</a></li>
-                    <li><a class="active" href="../ferramentas.html">Ferramentas</a></li>
-                    <li><a href="../fale_conosco.html">Fale Conosco</a></li>
+                    <li><a href="../index.html">inicio</a></li>
+                    <li><a href="../certificacoes.html">certificacoes</a></li>
+                    <li><a href="../links.html">links</a></li>
+                    <li><a class="active" href="../ferramentas.html">ferramentas</a></li>
+                    <li><a href="../fale_conosco.html">contato</a></li>
                 </ul>
             </nav>
         </div>
@@ -250,61 +66,77 @@
 
     <main class="page-main">
         <div class="container">
-            <section class="content-card" aria-labelledby="seletor-de-cor">
-                <h2 id="seletor-de-cor" class="section-title">Seletor de Código de Cor</h2>
-                <p>Envie uma imagem, clique no ponto desejado e obtenha automaticamente o valor da cor em HEX, RGB e HSL. Ideal para capturar paletas diretamente de imagens e projetos visuais.</p>
-                <div class="tool-grid">
-                    <div class="image-card">
-                        <div class="file-actions">
-                            <label class="button file-label" for="image-picker">
-                                <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20h14V8H5v12zm0-14h4V4h6v2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"></path></svg>
-                                Enviar imagem
-                            </label>
-                            <input id="image-picker" type="file" accept="image/*" hidden>
-                            <span id="status-message" class="status-message">Nenhuma imagem carregada.</span>
-                        </div>
-                        <div class="image-frame" id="image-frame">
-                            <div class="image-placeholder" id="image-placeholder">
-                                Selecione uma imagem para ver o seletor de cor.<br>
-                                Clique em qualquer ponto da imagem para capturar o pixel.
-                            </div>
-                            <img id="preview-image" alt="Pré-visualização de imagem para seleção de cor" hidden>
-                            <div id="click-target" class="click-target" role="presentation"></div>
-                        </div>
-                        <p class="info-note">Use o cursor em cruz sobre a imagem. A leitura é feita via canvas para capturar exatamente o pixel clicado.</p>
+            <section class="terminal-window" aria-labelledby="seletor-de-cor">
+                <div class="terminal-titlebar">
+                    <div class="window-controls">
+                        <span class="window-dot dot-close"></span>
+                        <span class="window-dot dot-minimize"></span>
+                        <span class="window-dot dot-maximize"></span>
                     </div>
+                    <span class="window-title">~/bin/color-picker.app</span>
+                    <span class="window-info">canvas:ready</span>
+                </div>
 
-                    <aside class="details-card">
-                        <div class="preview-box">
-                            <p class="color-label">Cor selecionada</p>
-                            <div class="color-sample" id="color-sample"><span></span></div>
+                <div class="content-card-body">
+                    <div class="cli-prompt">
+                        <span class="cli-user">rafael@portfolio</span>:<span class="cli-path">~/bin</span>$ <span class="cli-cmd">./color-picker --interactive</span>
+                    </div>
+                    <h2 id="seletor-de-cor" class="section-title">Seletor de Código de Cor</h2>
+                    <p>Envie uma imagem, clique no ponto desejado e obtenha automaticamente o valor da cor em HEX, RGB e HSL. Ideal para capturar paletas diretamente de imagens e projetos visuais.</p>
+                    
+                    <div class="tool-grid">
+                        <div class="image-card">
+                            <div class="file-actions">
+                                <label class="button file-label" for="image-picker">
+                                    <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 20h14V8H5v12zm0-14h4V4h6v2h4a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1z"></path></svg>
+                                    Enviar imagem
+                                </label>
+                                <input id="image-picker" type="file" accept="image/*" hidden>
+                                <span id="status-message" class="status-message">Nenhuma imagem carregada.</span>
+                            </div>
+                            <div class="image-frame" id="image-frame">
+                                <div class="image-placeholder" id="image-placeholder">
+                                    Selecione uma imagem para ver o seletor de cor.<br>
+                                    Clique em qualquer ponto da imagem para capturar o pixel.
+                                </div>
+                                <img id="preview-image" alt="Pré-visualização de imagem para seleção de cor" hidden>
+                                <div id="click-target" class="click-target" role="presentation"></div>
+                            </div>
+                            <p class="info-note">Use o cursor em cruz sobre a imagem. A leitura é feita via canvas para capturar exatamente o pixel clicado.</p>
                         </div>
-                        <div class="color-values">
-                            <div class="color-row">
-                                <div>
-                                    <p class="color-label">HEX</p>
-                                    <div class="color-value" id="hex-value">#000000</div>
-                                </div>
-                                <button class="button button-copy" type="button" data-copy-target="hex-value">Copiar</button>
+
+                        <aside class="details-card">
+                            <div class="preview-box">
+                                <p class="color-label">Cor selecionada</p>
+                                <div class="color-sample" id="color-sample"><span></span></div>
                             </div>
-                            <div class="color-row">
-                                <div>
-                                    <p class="color-label">RGB</p>
-                                    <div class="color-value" id="rgb-value">rgb(0, 0, 0)</div>
+                            <div class="color-values">
+                                <div class="color-row">
+                                    <div>
+                                        <p class="color-label">HEX</p>
+                                        <div class="color-value" id="hex-value">#000000</div>
+                                    </div>
+                                    <button class="button button-copy" type="button" data-copy-target="hex-value">Copiar</button>
                                 </div>
-                                <button class="button button-copy" type="button" data-copy-target="rgb-value">Copiar</button>
-                            </div>
-                            <div class="color-row">
-                                <div>
-                                    <p class="color-label">HSL</p>
-                                    <div class="color-value" id="hsl-value">hsl(0, 0%, 0%)</div>
+                                <div class="color-row">
+                                    <div>
+                                        <p class="color-label">RGB</p>
+                                        <div class="color-value" id="rgb-value">rgb(0, 0, 0)</div>
+                                    </div>
+                                    <button class="button button-copy" type="button" data-copy-target="rgb-value">Copiar</button>
                                 </div>
-                                <button class="button button-copy" type="button" data-copy-target="hsl-value">Copiar</button>
+                                <div class="color-row">
+                                    <div>
+                                        <p class="color-label">HSL</p>
+                                        <div class="color-value" id="hsl-value">hsl(0, 0%, 0%)</div>
+                                    </div>
+                                    <button class="button button-copy" type="button" data-copy-target="hsl-value">Copiar</button>
+                                </div>
                             </div>
-                        </div>
-                        <button class="button button-clear" id="clear-button" type="button">Limpar imagem</button>
-                        <p class="info-note">Se nenhum valor for exibido, envie uma imagem e clique em um ponto válido. A ferramenta atualiza automaticamente os códigos de cor e o preview.</p>
-                    </aside>
+                            <button class="button button-clear" id="clear-button" type="button">Limpar imagem</button>
+                            <p class="info-note" style="margin-top: 1rem;">Se nenhum valor for exibido, envie uma imagem e clique em um ponto válido. A ferramenta atualiza automaticamente os códigos de cor e o preview.</p>
+                        </aside>
+                    </div>
                 </div>
             </section>
         </div>
@@ -312,7 +144,7 @@
 
     <footer class="site-footer">
         <div class="container">
-            <p>Rafael Ferreira | Ferramenta de seleção de cor integrada ao portfólio</p>
+            <p><span class="footer-prompt">rafael@portfolio:~$</span> echo "Rafael Ferreira | Ferramenta de seleção de cor integrada ao portfólio"</p>
         </div>
     </footer>
 
